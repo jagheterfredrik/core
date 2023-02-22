@@ -385,7 +385,8 @@ class ESPHomeClient(BaseBleakClient):
     @api_error_as_bleak_error
     async def pair(self, *args: Any, **kwargs: Any) -> bool:
         """Attempt to pair."""
-        raise NotImplementedError("Pairing is not available in ESPHome.")
+        await self._client.bluetooth_device_pair(self._address_as_int)
+        return True
 
     @verify_connected
     @api_error_as_bleak_error
